@@ -8,6 +8,7 @@ package modelo;
  *
  * @author keppler
  */
-public class CompraObserver {
-    
+public interface CompraObserver {
+     
+    void update();
 }
