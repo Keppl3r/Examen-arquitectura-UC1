@@ -34,7 +34,7 @@ public class Banco {
     // tarjeta simulada sin fondos, termina con 9999  
     public String procesarPago(Tarjeta tarjeta, double total) {
         if (tarjeta.getNumero().endsWith("9999")) {
-            return "FONDOS_INSUFICIENTES";
+            return null;
         }
         return "APROBADO";
     }
