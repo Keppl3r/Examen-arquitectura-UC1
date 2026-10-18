@@ -20,15 +20,6 @@ public class DetalleCompra {
         calcularSubtotal();
     }
 
-    public void sumarCantidad(int cantidad) {
-        this.cantidad += cantidad;
-        calcularSubtotal();
-    }
-
-    private void calcularSubtotal() {
-        subtotal = producto.getCosto() * cantidad;
-    }
-
     public Producto getProducto() {
         return producto;
     }
@@ -39,6 +30,15 @@ public class DetalleCompra {
 
     public double getSubtotal() {
         return subtotal;
+    }
+    
+     public void sumarCantidad(int cantidad) {
+        this.cantidad += cantidad;
+        calcularSubtotal();
+    }
+
+    private void calcularSubtotal() {
+        subtotal = producto.getCosto() * cantidad;
     }
 
 }

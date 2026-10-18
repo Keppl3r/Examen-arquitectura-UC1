@@ -53,6 +53,6 @@ public class Tarjeta {
     }
         String digitos=numero.substring(numero.length()-4);
         
-        return "****-****-****-" + digitos;
+        return "****" + digitos;
 }
     }
