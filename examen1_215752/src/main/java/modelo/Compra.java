@@ -13,14 +13,14 @@ import java.util.List;
  * @author keppler
  */
 public class Compra {
-    
+
     private List<DetalleCompra> detalles = new ArrayList<>();
     private double total;
     private LocalDateTime fecha;
     private Tarjeta tarjeta;
     private boolean pagada;
     private boolean enPago;
-    private String mensaje;
+    private String mensaje = "";
     private Catalogo catalogo;
     private Banco banco;
     private List<CompraObserver> observers = new ArrayList<>();
@@ -30,7 +30,6 @@ public class Compra {
         this.banco = banco;
     }
 
-    
     public void addObserver(CompraObserver obs) {
         observers.add(obs);
     }
@@ -41,10 +40,9 @@ public class Compra {
         }
     }
 
-   
     public void agregarProducto(String nombreProducto, int cantidad) {
         mensaje = ""; // esto es para limpiar el ultimo mensaje guardado
-        if (!validarCantidad(cantidad)) {            
+        if (!validarCantidad(cantidad)) {
             mensaje = "cantidad invalida";
             notifyObservers();
             return;
@@ -57,7 +55,7 @@ public class Compra {
         }
         DetalleCompra detalle = buscarDetalle(producto);
         if (detalle != null) {
-            detalle.sumarCantidad(cantidad);          
+            detalle.sumarCantidad(cantidad);
         } else {
             detalles.add(new DetalleCompra(producto, cantidad));
         }
@@ -65,7 +63,6 @@ public class Compra {
         notifyObservers();
     }
 
-    
     public void iniciarPago() {
         mensaje = "";
         if (detalles.isEmpty()) {                     // FA3
@@ -76,11 +73,10 @@ public class Compra {
         notifyObservers();
     }
 
-    
     public void buscarTarjeta(String numero) {
         mensaje = "";
         Tarjeta encontrada = banco.buscarTarjeta(numero);
-        if (encontrada == null) {                     
+        if (encontrada == null) {
             tarjeta = null;
             mensaje = "tarjeta no valida";
         } else {
@@ -89,7 +85,6 @@ public class Compra {
         notifyObservers();
     }
 
-    
     public void pagar() {
         mensaje = "";
         if (tarjeta == null) {
@@ -100,14 +95,12 @@ public class Compra {
         String resultado = banco.procesarPago(tarjeta, total);
         if ("APROBADO".equals(resultado)) {
             registrar();
-        } else {                                      
+        } else {
             mensaje = "fondos insuficientes";
         }
         notifyObservers();
     }
 
-  
-  
     private boolean validarCantidad(int cantidad) {
         return cantidad > 0;
     }
@@ -121,7 +114,6 @@ public class Compra {
         return null;
     }
 
-
     private void calcularTotal() {
         total = 0;
         for (DetalleCompra d : detalles) {
@@ -134,7 +126,7 @@ public class Compra {
         fecha = LocalDateTime.now();
     }
 
-    //gets de la vista
+    //consultas de estado
     public List<Producto> getProductos() {
         return catalogo.getProductos();
     }

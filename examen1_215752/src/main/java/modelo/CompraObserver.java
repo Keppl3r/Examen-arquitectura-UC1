@@ -11,4 +11,5 @@ package modelo;
 public interface CompraObserver {
      
     void update();
+    
 }
