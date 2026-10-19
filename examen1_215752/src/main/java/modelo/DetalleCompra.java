@@ -9,7 +9,7 @@ package modelo;
  * @author keppler
  */
 public class DetalleCompra {
- 
+
     private Producto producto;
     private int cantidad;
     private double subtotal;
@@ -31,8 +31,8 @@ public class DetalleCompra {
     public double getSubtotal() {
         return subtotal;
     }
-    
-     public void sumarCantidad(int cantidad) {
+
+    public void sumarCantidad(int cantidad) {
         this.cantidad += cantidad;
         calcularSubtotal();
     }
