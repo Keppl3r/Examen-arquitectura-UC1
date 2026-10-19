@@ -9,13 +9,10 @@ package modelo;
  * @author keppler
  */
 public class Producto {
-    
-    private String nombre;
-    
-    private double costo;
 
-    public Producto() {
-    }
+    private String nombre;
+
+    private double costo;
 
     public Producto(String nombre, double costo) {
         this.nombre = nombre;
@@ -30,13 +27,4 @@ public class Producto {
         return costo;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setCosto(double costo) {
-        this.costo = costo;
-    }
-    
-    
 }

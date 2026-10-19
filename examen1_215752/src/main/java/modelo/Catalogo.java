@@ -11,8 +11,8 @@ import java.util.List;
  * @author keppler
  */
 public class Catalogo {
-    
-private List<Producto> productos;
+
+    private List<Producto> productos;
 
     public Catalogo(List<Producto> productos) {
         this.productos = productos;

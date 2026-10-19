@@ -7,20 +7,21 @@ package modelo;
 import java.util.List;
 
 /**
- * Esta clase es una simulacion de un banco que guarda las tarjetas registradas y procesa el pago
+ * Esta clase es una simulacion de un banco que guarda las tarjetas registradas
+ * y procesa el pago
+ *
  * @author keppler
  */
 public class Banco {
-    
-     private List<Tarjeta> tarjetas;
+
+    private List<Tarjeta> tarjetas;
 
     public Banco(List<Tarjeta> tarjetas) {
         this.tarjetas = tarjetas;
     }
 
-    
     public Tarjeta buscarTarjeta(String numero) {
-        if (numero == null || numero.length()<16) {
+        if (numero == null || numero.length() < 16) {
             return null;
         }
         for (Tarjeta tarjeta : tarjetas) {
@@ -31,10 +32,10 @@ public class Banco {
         return null;
     }
 
-    // tarjeta simulada sin fondos, termina con 9999  
+    // tarjeta simulada sin fondos, termina con 0000
     public String procesarPago(Tarjeta tarjeta, double total) {
-        if (tarjeta.getNumero().endsWith("9999")) {
-            return null;
+        if (tarjeta.getNumero().endsWith("0000")) {
+            return "FONDOS_INSUFICIENTES";
         }
         return "APROBADO";
     }
